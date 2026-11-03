@@ -125,6 +125,22 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
 .view[data-view="works"] .wk .ph{aspect-ratio:4/5}
 .view[data-view="works"] .wk figcaption{flex-wrap:wrap;gap:2px 10px;font-size:.92rem;padding-top:10px}
 @media(max-width:760px){.view[data-view="works"] .wk{grid-template-columns:repeat(2,1fr);gap:22px 12px}.view[data-view="works"] .wk figcaption{flex-direction:column;font-size:.85rem}}
+.fl2{grid-column:1/6}.fr{grid-column:7/13}
+@media(max-width:860px){.fl2,.fr{grid-column:1/13}}
+.f{display:flex;flex-direction:column;gap:6px;margin:0 0 28px;border:0;padding:0;min-width:0}
+.f>label,.f>legend{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:500;padding:0}
+.f input:not([type=checkbox]):not([type=radio]),.f textarea,.f select{font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--ink);padding:10px 0;width:100%;border-radius:0;outline:0}
+.f textarea{min-height:140px;resize:vertical;border:1px solid var(--ink);padding:12px}
+.f select option{background:var(--paper);color:var(--ink)}
+.f input:focus,.f textarea:focus,.f select:focus{border-color:var(--acc)}
+.chips2{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.opt{position:relative}.opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.opt span{display:block;padding:9px 16px;border:1px solid var(--rule);font-size:.92rem;font-weight:500;transition:background .3s,color .3s}
+.opt:hover span{border-color:var(--ink)}.opt input:checked+span{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.opt input:focus-visible+span{outline:2px solid var(--acc);outline-offset:3px}
+.hp{position:absolute;left:-9999px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}@media(max-width:560px){.two{grid-template-columns:1fr}}
+#fmsg{min-height:1.6em;margin-top:16px;color:var(--mute)}
 </style>
 </head>
 <body>
@@ -135,7 +151,7 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
 <nav id="nav"><div class="wrap nb">
  <a class="logo" href="#home" data-v="home" aria-label="Graph Zine home"><span>Graph Zine<i>.</i></span></a>
  <div class="nl"><a href="#works" data-v="works">Works</a><a href="#services" data-v="services">Services</a><a href="#about" data-v="about">About</a></div>
- <a class="btn nav-cta mag" href="#contact">Start a project</a>
+ <a class="btn nav-cta mag" href="#start">Start a project</a>
 </div></nav>
 
 <main>
@@ -291,12 +307,51 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
   </div>
  </section>
 </div>
+<!-- ================= START A PROJECT ================= -->
+<div class="view" data-view="start" hidden>
+ <section class="wrap">
+  <div class="g">
+   <div class="fl2">
+    <p class="eyebrow">Index 05</p>
+    <h1 class="disp" data-split style="margin:16px 0 20px;font-size:clamp(2.6rem,5.4vw,5rem)">Start a project</h1>
+    <p class="lead" data-r>Tell me what you need and when you need it. The more detail you share, the faster the first draft arrives.</p>
+    <div style="margin-top:var(--gap)">
+     <div class="row" style="grid-template-columns:44px 1fr" data-r><span class="n">1</span><p>I read your brief and reply with a price and a timeline. <!-- REPLY TIME: add how fast you reply --></p></div>
+     <div class="row" style="grid-template-columns:44px 1fr" data-r><span class="n">2</span><p>Work begins once you confirm.</p></div>
+     <div class="row" style="grid-template-columns:44px 1fr" data-r><span class="n">3</span><p>You receive final files ready to post or print.</p></div>
+    </div>
+   </div>
+   <div class="fr">
+    <form id="brief" data-r>
+     <div class="two">
+      <div class="f"><label for="b-name">Your name</label><input id="b-name" name="name" required autocomplete="name"></div>
+      <div class="f"><label for="b-mail">Email</label><input id="b-mail" name="email" type="email" required autocomplete="email"></div>
+     </div>
+     <div class="f"><label for="b-wa">WhatsApp number (optional)</label><input id="b-wa" name="whatsapp" type="tel" autocomplete="tel"></div>
+     <fieldset class="f"><legend>I am a</legend><div class="chips2"><label class="opt"><input type="radio" name="audience" value="College student"><span>College student</span></label><label class="opt"><input type="radio" name="audience" value="Instagram brand"><span>Instagram brand</span></label><label class="opt"><input type="radio" name="audience" value="Local shop"><span>Local shop</span></label><label class="opt"><input type="radio" name="audience" value="Teacher or office staff"><span>Teacher or office staff</span></label><label class="opt"><input type="radio" name="audience" value="Other"><span>Other</span></label></div></fieldset>
+     <fieldset class="f"><legend>I need</legend><div class="chips2"><label class="opt"><input type="checkbox" name="services" value="Social media posts"><span>Social media posts</span></label><label class="opt"><input type="checkbox" name="services" value="Logo and brand kit"><span>Logo and brand kit</span></label><label class="opt"><input type="checkbox" name="services" value="Poster or flyer"><span>Poster or flyer</span></label><label class="opt"><input type="checkbox" name="services" value="Monthly content pack"><span>Monthly content pack</span></label><label class="opt"><input type="checkbox" name="services" value="Something else"><span>Something else</span></label></div></fieldset>
+     <div class="f"><label for="b-det">Tell me about the project</label><textarea id="b-det" name="details" required placeholder="What is it for, who will see it, any text or colours to include?"></textarea></div>
+     <div class="two">
+      <div class="f"><label for="b-date">Needed by</label><input id="b-date" name="deadline" type="date"></div>
+      <div class="f"><label for="b-bud">Budget</label><select id="b-bud" name="budget"><!-- BUDGET: replace these placeholder ranges with your own -->
+       <option value="">Not sure yet</option><option>Rs [BUDGET RANGE 1]</option><option>Rs [BUDGET RANGE 2]</option><option>Rs [BUDGET RANGE 3]</option></select></div>
+     </div>
+     <div class="f"><label for="b-ref">Reference link (optional)</label><input id="b-ref" name="reference_link" type="url" placeholder="Instagram page, Pinterest board, Drive folder"></div>
+     <div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+     <button class="btn mag" type="submit">Send project brief</button>
+     <p id="fmsg" role="status" aria-live="polite"></p>
+    </form>
+    <div id="thanks" hidden><h2 class="disp">Thank you.</h2><p class="lead" style="margin-top:20px">Your brief has been received. Expect a reply on WhatsApp or email <!-- REPLY TIME: edit -->soon.</p></div>
+   </div>
+  </div>
+ </section>
+</div>
 </main>
 
 <section class="band" style="padding:var(--sec) 0">
  <div class="wrap g">
   <div style="grid-column:1/9"><p class="eyebrow">Ready when you are</p><h2 class="disp" data-split style="margin-top:14px">Tell me what you need posted.</h2></div>
-  <div style="grid-column:9/13;align-self:end;justify-self:start"><a class="btn mag" href="#contact">Start a project</a></div>
+  <div style="grid-column:9/13;align-self:end;justify-self:start"><a class="btn mag" href="#start">Start a project</a></div>
  </div>
 </section>
 
@@ -315,8 +370,8 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
 (function(){
 var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
 var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(pointer:fine)').matches;
-var views=$$('.view'),names=['home','works','services','about'],cv=$('#curtain'),cur=$('#cur'),nav=$('#nav'),bar=$('#bar');
-var titles={home:'Graph Zine | Graphic design for social media and small brands',works:'Works | Graph Zine',services:'Services | Graph Zine',about:'About | Graph Zine'};
+var views=$$('.view'),names=['home','works','services','about','start'],cv=$('#curtain'),cur=$('#cur'),nav=$('#nav'),bar=$('#bar');
+var titles={home:'Graph Zine | Graphic design for social media and small brands',works:'Works | Graph Zine',services:'Services | Graph Zine',about:'About | Graph Zine',start:'Start a project | Graph Zine'};
 var ease='cubic-bezier(.7,0,.2,1)',current='',busy=false;
 
 /* split text into words for staggered reveal */
@@ -365,6 +420,25 @@ function tick(){ticking=false;var y=scrollY,H=document.documentElement.scrollHei
 addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(tick)}},{passive:true});
 addEventListener('resize',tick);tick();
 
+/* START A PROJECT FORM: saves to Supabase once the two values below are filled in.
+   SQL to run in Supabase (SQL editor) before connecting:
+   create table project_requests(id uuid primary key default gen_random_uuid(), created_at timestamptz default now(), name text, email text, whatsapp text, audience text, services text[], details text, deadline date, budget text, reference_link text);
+   alter table project_requests enable row level security;
+   create policy "anyone can submit" on project_requests for insert to anon with check (true);
+   NOTE: the browser only allows this request when the page is hosted on your own site, not inside a claude.ai preview. */
+var SUPABASE_URL='';/* PLACEHOLDER: https://YOUR-PROJECT.supabase.co */
+var SUPABASE_ANON_KEY='';/* PLACEHOLDER: your anon public key */
+var SUPABASE_TABLE='project_requests';
+function sendBrief(p){if(!SUPABASE_URL||!SUPABASE_ANON_KEY)return Promise.reject(new Error('not-connected'));
+ return fetch(SUPABASE_URL+'/rest/v1/'+SUPABASE_TABLE,{method:'POST',headers:{'Content-Type':'application/json',apikey:SUPABASE_ANON_KEY,Authorization:'Bearer '+SUPABASE_ANON_KEY,Prefer:'return=minimal'},body:JSON.stringify(p)}).then(function(r){if(!r.ok)throw new Error('http-'+r.status)})}
+var fm=$('#brief');
+if(fm)fm.addEventListener('submit',function(e){e.preventDefault();var msg=$('#fmsg'),btn=$('button[type=submit]',fm);
+ if(fm.website.value)return;
+ var d=new FormData(fm),v=function(k){return(d.get(k)||'').toString().trim()},p={name:v('name'),email:v('email'),whatsapp:v('whatsapp')||null,audience:v('audience')||null,services:d.getAll('services'),details:v('details'),deadline:v('deadline')||null,budget:v('budget')||null,reference_link:v('reference_link')||null};
+ if(!p.services.length){msg.textContent='Please choose at least one thing you need.';return}
+ btn.disabled=true;msg.textContent='Sending...';
+ sendBrief(p).then(function(){fm.hidden=true;$('#thanks').hidden=false;window.scrollTo({top:0,behavior:'smooth'})}).catch(function(err){btn.disabled=false;console.log('Project brief (not saved):',p);
+  msg.textContent=err.message==='not-connected'?'The form is not connected to the database yet. Please message me on Instagram or WhatsApp for now.':'Something went wrong. Please try again or message me directly.'});});
 /* hero logo: click to replay the assembly */
 var mk=$('#mark');if(mk)mk.addEventListener('click',function(){mk.style.display='none';void mk.getBoundingClientRect();mk.style.display=''});
 })();
