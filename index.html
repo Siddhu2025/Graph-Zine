@@ -45,12 +45,12 @@ nav.s{background:color-mix(in srgb,var(--paper) 78%,transparent);-webkit-backdro
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;background:var(--ink);color:var(--paper);font-weight:600;font-size:.95rem;transition:background .4s,color .4s;will-change:transform}
 .btn:hover{background:var(--accbg);color:var(--onacc)}.btn.o{background:transparent;color:var(--ink);box-shadow:none;border:1px solid var(--ink)}.btn.o:hover{background:var(--ink);color:var(--paper)}
 .nav-cta{padding:10px 18px}
-@media(max-width:760px){.nav-cta{display:none}.nb{height:60px}}
+@media(max-width:760px){.x{display:none}.nb{height:60px;gap:10px}.logo{font-size:1.3rem}.nl{gap:12px;font-size:.85rem}.nav-cta{padding:8px 14px;font-size:.85rem}}
 /* views */
 .view{padding-top:68px;min-height:70vh}.view[hidden]{display:none}
 section{padding:var(--sec) 0}
 .view>section:first-child{padding-top:clamp(40px,5vw,72px)!important}
-.rule{border-top:1px solid var(--rule)}
+.rule{position:relative}.rule::before{content:"";position:absolute;top:0;left:clamp(20px,4vw,56px);right:clamp(20px,4vw,56px);height:1px;background:var(--rule)}
 /* reveal */
 [data-r]{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0)*90ms)}
 [data-r].in{opacity:1;transform:none}
@@ -141,6 +141,14 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
 .hp{position:absolute;left:-9999px}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}@media(max-width:560px){.two{grid-template-columns:1fr}}
 #fmsg{min-height:1.6em;margin-top:16px;color:var(--mute)}
+section.wrap{padding-block:calc(var(--sec)*.72)}
+.kin+section.wrap{padding-top:calc(var(--sec)*1.44)}
+body[data-page="start"] .band{display:none}
+.nav-cta{gap:0}
+section:has(+ .rule) .row:last-child{border-bottom:0}
+.logo{white-space:nowrap}
+@media(max-width:760px){.logo{font-size:1.15rem}.nl{gap:10px}}
+.hero2 .acts{width:100%;max-width:420px}.hero2 .acts .btn{flex:1 1 160px;justify-content:center}
 </style>
 </head>
 <body>
@@ -151,7 +159,7 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
 <nav id="nav"><div class="wrap nb">
  <a class="logo" href="#home" data-v="home" aria-label="Graph Zine home"><span>Graph Zine<i>.</i></span></a>
  <div class="nl"><a href="#works" data-v="works">Works</a><a href="#services" data-v="services">Services</a><a href="#about" data-v="about">About</a></div>
- <a class="btn nav-cta mag" href="#start">Start a project</a>
+ <a class="btn nav-cta mag" href="#start">Start<span class="x"> a project</span></a>
 </div></nav>
 
 <main>
@@ -174,7 +182,7 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
 
  <div class="kin" aria-hidden="true"><div data-kin><span>Posts</span><span>Logos</span><span>Posters</span><span>Brand kits</span><span>Posts</span><span>Logos</span><span>Posters</span><span>Brand kits</span></div></div>
 
- <section class="wrap" style="padding-top:calc(var(--sec)*1.44)">
+ <section class="wrap">
   <div class="hd"><h2 class="disp" data-split>Made for people who post often.</h2><p class="lead" data-r>Four kinds of clients, one clear way of working: short briefs, fast drafts, honest feedback.</p></div>
   <div>
    <div class="row" data-r><span class="n">01</span><h3>College students</h3><p class="lead">Fest posters, club handles, event reels and portfolio covers that look organised.</p></div>
@@ -184,7 +192,7 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
   </div>
  </section>
 
- <section class="wrap rule" style="padding-top:calc(var(--sec)*1.44)">
+ <section class="wrap rule">
   <div class="hd"><h2 class="disp" data-split>Recent work</h2><a class="btn o mag" href="#works" data-v="works">All works</a></div>
   <div class="wk">
    <figure class="tall" data-r>
@@ -205,7 +213,7 @@ footer{padding:var(--sec) 0 32px;border-top:1px solid var(--rule)}
   </div>
  </section>
 
- <section class="wrap rule" style="padding-top:calc(var(--sec)*1.44)">
+ <section class="wrap rule">
   <div class="g">
    <div style="grid-column:1/6"><p class="eyebrow">Process</p><h2 class="disp" data-split style="margin-top:16px">Four steps, no guesswork.</h2></div>
    <div style="grid-column:7/13">
@@ -381,7 +389,7 @@ $$('[data-split]').forEach(function(el){var t=el.textContent.trim().split(/\s+/)
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -6% 0px'});
 $$('[data-r],[data-split]').forEach(function(el){io.observe(el)});
 
-function swap(n){views.forEach(function(v){v.hidden=v.dataset.view!==n});$$('nav a[data-v]').forEach(function(a){if(a.dataset.v===n)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});current=n;document.title=titles[n];window.scrollTo(0,0);tick()}
+function swap(n){views.forEach(function(v){v.hidden=v.dataset.view!==n});$$('nav a[data-v]').forEach(function(a){if(a.dataset.v===n)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});current=n;document.body.dataset.page=n;document.title=titles[n];window.scrollTo(0,0);tick()}
 function route(){
  var h=location.hash.slice(1);
  if(h==='contact'){$('#contact').scrollIntoView({behavior:reduce?'auto':'smooth'});return}
